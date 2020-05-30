@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-require 'test_helper'
+require 'minitest/autorun'
 require 'code_challenge/deck'
 
 class DeckTest < MiniTest::Test
