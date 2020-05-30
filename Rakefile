@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # code-challenge
 # Copyright (C) 2020  M. Adam Price
 #
@@ -16,10 +18,25 @@
 #
 
 require 'rake/testtask'
+require 'rubocop/rake_task'
 
 Rake::TestTask.new(:test) do |t|
-  t.libs << 'test'
-  t.test_files = ['test/helper.rb']
+  t.libs << 'lib' << 'test'
+  t.test_files = Rake::FileList.new(File.join('test', '*_test.rb'))
+  t.verbose = true
+  t.options = '-v'
 end
 
-task :default => :test
+RuboCop::RakeTask.new(:lint) do |t|
+  t.patterns = [
+    'Gemfile',
+    'Rakefile',
+    'lib/**/*.rb',
+    'test/**/*.rb'
+  ]
+  t.options = ['--display-style-guide']
+end
+
+task all: %i[test lint]
+
+task default: :all

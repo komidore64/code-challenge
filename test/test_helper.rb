@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # code-challenge
 # Copyright (C) 2020  M. Adam Price
 #
@@ -16,7 +18,3 @@
 #
 
 require 'minitest/autorun'
-
-Rake::FileList.new(File.join(File.dirname(__FILE__), "test", "*_test.rb")).each do |f|
-  require f
-end

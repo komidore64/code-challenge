@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # code-challenge
 # Copyright (C) 2020  M. Adam Price
 #
@@ -14,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+
+require 'test_helper'
 
 class CardTest < MiniTest::Test
 end

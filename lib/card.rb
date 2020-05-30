@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # code-challenge
 # Copyright (C) 2020  M. Adam Price
 #
