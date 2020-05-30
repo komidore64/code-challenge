@@ -37,8 +37,10 @@ class CardTest < MiniTest::Test
   end
 
   def test_creation_bad_args
-    error = assert_raises(IncorrectCardArgumentsError) { Card.new(:coffee, :thirteen) }
-    assert_equal('Incorrect card qualities given', error.message)
+    suit = :coffee
+    face = :thirteen
+    error = assert_raises(RuntimeError) { Card.new(:coffee, :thirteen) }
+    assert_equal("Incorrect card arguments [ suit: #{suit}, face: #{face} ]", error.message)
   end
 
   def test_for_uncallables

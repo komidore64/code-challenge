@@ -16,7 +16,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-require 'code_challenge/err/incorrect_card_arguments_error'
 
 # Represents a poker-style playing card.
 class Card
@@ -57,7 +56,9 @@ class Card
   attr_reader :suit, :face
 
   def initialize(suit, face)
-    raise IncorrectCardArgumentsError unless Card.suits.include?(suit) && Card.faces.include?(face)
+    unless Card.suits.include?(suit) && Card.faces.include?(face)
+      raise "Incorrect card arguments [ suit: #{suit}, face: #{face} ]"
+    end
 
     @suit = suit
     @face = face
