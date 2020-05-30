@@ -39,8 +39,4 @@ class Deck
   def deal_one_card
     @card_pool.pop
   end
-
-  def cards
-    @card_pool.clone
-  end
 end

@@ -30,9 +30,9 @@ class DeckTest < MiniTest::Test
   end
 
   def test_shuffle
-    old = @deck.cards
+    old = @deck.instance_variable_get(:@card_pool)
     assert_nil(@deck.shuffle)
-    refute_equal(old, @deck.cards)
+    refute_equal(old, @deck.instance_variable_get(:@card_pool))
   end
 
   def test_shuffle_1000_times
@@ -42,21 +42,21 @@ class DeckTest < MiniTest::Test
   end
 
   def test_draw_one_card
-    expected_size = @deck.cards.size - 1
+    expected_size = @deck.instance_variable_get(:@card_pool).size - 1
     dealt = @deck.deal_one_card
 
     assert_instance_of(Card, dealt)
-    assert_equal(expected_size, @deck.cards.size)
+    assert_equal(expected_size, @deck.instance_variable_get(:@card_pool).size)
   end
 
   def test_draw_one_card_deck_depletion
-    deck_size = @deck.cards.size
+    deck_size = @deck.instance_variable_get(:@card_pool).size
     deck_size.times do
       test_draw_one_card
     end
 
     assert_nil(@deck.deal_one_card)
-    assert_empty(@deck.cards)
+    assert_empty(@deck.instance_variable_get(:@card_pool))
   end
 
   def test_card_uniqueness_within_deck # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
@@ -87,14 +87,7 @@ class DeckTest < MiniTest::Test
     ]
 
     actual = []
-    actual << @deck.deal_one_card until @deck.cards.empty?
+    actual << @deck.deal_one_card until @deck.instance_variable_get(:@card_pool).empty?
     assert_equal(expected.sort, actual.sort)
-  end
-
-  # We want to make sure we can't alter what's left in the deck _except_ for
-  # when dealing a card.
-  def test_card_list_duplicated
-    list = @deck.cards
-    refute_same(list, @deck.instance_variable_get(:@card_pool))
   end
 end
