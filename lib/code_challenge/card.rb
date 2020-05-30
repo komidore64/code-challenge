@@ -44,20 +44,10 @@ class Card
 
   include Comparable
 
-  class << self
-    def suits
-      SUITS
-    end
-
-    def faces
-      FACES
-    end
-  end
-
   attr_reader :suit, :face
 
   def initialize(suit, face)
-    unless Card.suits.include?(suit) && Card.faces.include?(face)
+    unless Card::SUITS.include?(suit) && Card::FACES.include?(face)
       raise "Incorrect card arguments [ suit: #{suit}, face: #{face} ]"
     end
 

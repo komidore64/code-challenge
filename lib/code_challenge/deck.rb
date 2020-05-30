@@ -23,7 +23,7 @@ require 'code_challenge/card'
 # and faces by the Card class.
 class Deck
   def initialize
-    pool = Card.suits.product(Card.faces)
+    pool = Card::SUITS.product(Card::FACES)
     @card_pool = pool.map { |suit, face| Card.new(suit, face) }
 
     shuffle

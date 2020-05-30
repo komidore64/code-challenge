@@ -29,19 +29,6 @@ class CardTest < MiniTest::Test
     @card = nil
   end
 
-  def test_class_method_suits
-    expected = %i[hearts spades clubs diamonds]
-    assert_equal(expected, Card.suits)
-  end
-
-  def test_class_method_faces
-    expected = %i[
-      ace two three four five six seven
-      eight nine ten jack queen king
-    ]
-    assert_equal(expected, Card.faces)
-  end
-
   def test_creation_bad_args
     suit = :coffee
     face = :thirteen
