@@ -19,5 +19,15 @@
 
 require 'code_challenge/card'
 
+# Deck implements a 52 card poker-style deck of cards.
 class Deck
+  def initialize
+    # 1. build our card pool
+    # 2. randomly rearrange the card pool
+    # 3. cache the card pool
+  end
+
+  def shuffle; end
+
+  def deal_one_card; end
 end
