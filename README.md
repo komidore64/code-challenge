@@ -19,3 +19,27 @@ Within one of your classes, you must provide two operations:
    `dealOneCard()` should result in the caller being provided all 52 cards
    of the deck in a random order. If the caller then makes a 53rd call to
    `dealOneCard()`, no card is dealt.
+
+## Poking around
+
+This repo assumes [RVM](https://rvm.io) is present, but isn't strictly
+necessary.
+
+```sh
+rvm install 2.7
+# stuff happens
+
+cd .
+# this _should_ initialize the RVM gemset (based on the contents of
+# .ruby-version and .ruby-gemset)
+
+bundle install
+```
+
+Run `rake test` for unit tests.
+
+Run `rake lint` to check code styling.
+
+Run `./repl` to launch a [Pry](https://github.com/pry/pry) session with **Code
+Challenge** already loaded to directly interact with the classes/objects via
+Ruby.
