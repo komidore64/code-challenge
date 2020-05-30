@@ -19,7 +19,7 @@
 
 require 'code_challenge/card'
 
-# Deck implements an arbitrary deck of cards give their description of suits
+# Deck implements an arbitrary deck of cards given their description of suits
 # and faces by the Card class.
 class Deck
   def initialize
