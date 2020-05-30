@@ -18,7 +18,7 @@
 #
 
 require 'test_helper'
-require 'card'
+require 'code_challenge/card'
 
 class CardTest < MiniTest::Test
   def setup
@@ -65,7 +65,8 @@ class CardTest < MiniTest::Test
   end
 
   def test_compare_unequal
-    refute_equal(Card.new(:hearts, :four), @card)
-    refute_equal(Card.new(:spades, :ace), @card)
+    refute_equal(%w[foo bar], @card) # mismatched class
+    refute_equal(Card.new(:spades, :ace), @card) # mismatched suit
+    refute_equal(Card.new(:hearts, :four), @card) # mismatched face
   end
 end

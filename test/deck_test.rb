@@ -18,6 +18,23 @@
 #
 
 require 'test_helper'
+require 'code_challenge/deck'
 
 class DeckTest < MiniTest::Test
+
+  def setup
+    @deck = Deck.new
+  end
+
+  def teardown
+    @deck = nil
+  end
+
+  def test_responds_to_shuffle
+    assert_respond_to(@deck, :shuffle)
+  end
+
+  def test_responds_to_deal_one_card
+    assert_respond_to(@deck, :deal_one_card)
+  end
 end

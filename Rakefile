@@ -21,7 +21,8 @@ require 'rake/testtask'
 require 'rubocop/rake_task'
 
 Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib' << 'test'
+  t.libs << 'lib/code_challenge'
+  t.libs << 'test'
   t.test_files = Rake::FileList.new(File.join('test', '*_test.rb'))
   t.verbose = true
   t.options = '-v'

@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-require 'err/incorrect_card_arguments_error'
+require 'code_challenge/err/incorrect_card_arguments_error'
 
 # Represents a poker-style playing card.
 class Card
@@ -71,6 +71,8 @@ class Card
   end
 
   def ==(other)
+    return false unless other.instance_of?(Card)
+
     @suit == other.suit && @face == other.face
   end
 end
