@@ -16,6 +16,61 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+require 'err/incorrect_card_arguments_error'
 
+# Represents a poker-style playing card.
 class Card
+  SUITS = %i[
+    hearts
+    spades
+    clubs
+    diamonds
+  ].freeze
+
+  FACES = %i[
+    ace
+    one
+    two
+    three
+    four
+    five
+    six
+    seven
+    eight
+    nine
+    jack
+    queen
+    king
+  ].freeze
+
+  class << self
+    def suits
+      SUITS
+    end
+
+    def faces
+      FACES
+    end
+  end
+
+  attr_reader :suit, :face
+
+  def initialize(suit, face)
+    raise IncorrectCardArgumentsError unless Card.suits.include?(suit) && Card.faces.include?(face)
+
+    @suit = suit
+    @face = face
+  end
+
+  def to_s
+    "#{@face} of #{@suit}"
+  end
+
+  def inspect
+    to_s
+  end
+
+  def ==(other)
+    @suit == other.suit && @face == other.face
+  end
 end

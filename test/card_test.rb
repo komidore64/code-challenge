@@ -18,6 +18,54 @@
 #
 
 require 'test_helper'
+require 'card'
 
 class CardTest < MiniTest::Test
+  def setup
+    @card = Card.new(:hearts, :ace)
+  end
+
+  def teardown
+    @card = nil
+  end
+
+  def test_creation_happy_path
+    assert_instance_of(Card, @card)
+
+    assert_equal(:hearts, @card.suit)
+    assert_equal(:ace, @card.face)
+  end
+
+  def test_creation_bad_args
+    error = assert_raises(IncorrectCardArgumentsError) { Card.new(:coffee, :thirteen) }
+    assert_equal('Incorrect card qualities given', error.message)
+  end
+
+  def test_for_uncallables
+    # we only want to set these via constructor
+    refute_respond_to(@card, :suit=)
+    refute_respond_to(@card, :face=)
+
+    # these should only be class methods
+    refute_respond_to(@card, :suits)
+    refute_respond_to(@card, :faces)
+  end
+
+  def test_class_methods
+    assert_respond_to(Card, :suits)
+    assert_respond_to(Card, :faces)
+  end
+
+  def test_string_representation
+    assert_equal('ace of hearts', @card.to_s)
+  end
+
+  def test_compare_equal
+    assert_equal(Card.new(:hearts, :ace), @card)
+  end
+
+  def test_compare_unequal
+    refute_equal(Card.new(:hearts, :four), @card)
+    refute_equal(Card.new(:spades, :ace), @card)
+  end
 end
