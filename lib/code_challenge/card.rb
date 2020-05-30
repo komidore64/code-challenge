@@ -70,7 +70,7 @@ class Card
   end
 
   def inspect
-    "<card: #{self}>"
+    "<Card: #{self}>"
   end
 
   def <=>(other)

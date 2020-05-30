@@ -29,45 +29,48 @@ class CardTest < MiniTest::Test
     @card = nil
   end
 
-  def test_creation_happy_path
-    assert_instance_of(Card, @card)
+  def test_class_method_suits
+    expected = %i[hearts spades clubs diamonds]
+    assert_equal(expected, Card.suits)
+  end
 
-    assert_equal(:hearts, @card.suit)
-    assert_equal(:ace, @card.face)
+  def test_class_method_faces
+    expected = %i[
+      ace two three four five six seven
+      eight nine ten jack queen king
+    ]
+    assert_equal(expected, Card.faces)
   end
 
   def test_creation_bad_args
     suit = :coffee
     face = :thirteen
-    error = assert_raises(RuntimeError) { Card.new(:coffee, :thirteen) }
+    error = assert_raises(RuntimeError) { Card.new(suit, face) }
     assert_equal("Incorrect card arguments [ suit: #{suit}, face: #{face} ]", error.message)
   end
 
-  def test_for_uncallables
-    # we only want to set these via constructor
-    refute_respond_to(@card, :suit=)
-    refute_respond_to(@card, :face=)
-
-    # these should only be class methods
-    refute_respond_to(@card, :suits)
-    refute_respond_to(@card, :faces)
+  def test_suit
+    assert_equal(:hearts, @card.suit)
   end
 
-  def test_class_methods
-    assert_respond_to(Card, :suits)
-    assert_respond_to(Card, :faces)
+  def test_face
+    assert_equal(:ace, @card.face)
   end
 
-  def test_string_representation
+  def test_to_s
     assert_equal('ace of hearts', @card.to_s)
   end
 
-  def test_compare_equal
+  def test_inspect
+    assert_equal('<Card: ace of hearts>', @card.inspect)
+  end
+
+  def test_equal
     assert_equal(Card.new(:hearts, :ace), @card)
   end
 
-  def test_compare_unequal
-    refute_equal(%w[foo bar], @card) # mismatched class
+  def test_unequal
+    refute_equal(Array, @card) # mismatched class
     refute_equal(Card.new(:spades, :ace), @card) # mismatched suit
     refute_equal(Card.new(:hearts, :four), @card) # mismatched face
   end

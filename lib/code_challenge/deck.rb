@@ -22,15 +22,11 @@ require 'code_challenge/card'
 # Deck implements an arbitrary deck of cards give their description of suits
 # and faces by the Card class.
 class Deck
-  def initialize(options = {})
-    options = {
-      initial_shuffle: true
-    }.merge(options)
-
+  def initialize
     pool = Card.suits.product(Card.faces)
     @card_pool = pool.map { |suit, face| Card.new(suit, face) }
 
-    shuffle if options[:initial_shuffle]
+    shuffle
   end
 
   def shuffle
