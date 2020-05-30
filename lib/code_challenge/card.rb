@@ -42,6 +42,8 @@ class Card
     king
   ].freeze
 
+  include Comparable
+
   class << self
     def suits
       SUITS
@@ -68,12 +70,15 @@ class Card
   end
 
   def inspect
-    to_s
+    "<card: #{self}>"
   end
 
-  def ==(other)
-    return false unless other.instance_of?(Card)
+  def <=>(other)
+    return nil unless other.instance_of?(Card)
 
-    @suit == other.suit && @face == other.face
+    comp = @suit <=> other.suit
+    return comp unless comp.zero?
+
+    @face <=> other.face
   end
 end

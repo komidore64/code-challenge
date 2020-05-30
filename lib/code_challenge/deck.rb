@@ -19,15 +19,32 @@
 
 require 'code_challenge/card'
 
-# Deck implements a 52 card poker-style deck of cards.
+# Deck implements an arbitrary deck of cards give their description of suits
+# and faces by the Card class.
 class Deck
-  def initialize
-    # 1. build our card pool
-    # 2. randomly rearrange the card pool
-    # 3. cache the card pool
+  def initialize(options = {})
+    options = {
+      initial_shuffle: true
+    }.merge(options)
+
+    pool = Card.suits.product(Card.faces)
+    @card_pool = pool.map { |suit, face| Card.new(suit, face) }
+
+    shuffle if options[:initial_shuffle]
   end
 
-  def shuffle; end
+  def shuffle
+    shuffled = []
+    shuffled << @card_pool.delete_at(rand(@card_pool.size)) until @card_pool.empty?
+    @card_pool = shuffled
+    nil
+  end
 
-  def deal_one_card; end
+  def deal_one_card
+    @card_pool.pop
+  end
+
+  def cards
+    @card_pool.clone
+  end
 end
