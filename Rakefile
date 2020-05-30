@@ -18,7 +18,8 @@
 require 'rake/testtask'
 
 Rake::TestTask.new(:test) do |t|
-  t.test_files = ['test_helper.rb']
+  t.libs << 'test'
+  t.test_files = ['test/helper.rb']
 end
 
 task :default => :test
