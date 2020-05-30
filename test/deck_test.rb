@@ -29,12 +29,6 @@ class DeckTest < MiniTest::Test
     @deck = nil
   end
 
-  def test_public_method_response
-    assert_respond_to(@deck, :shuffle)
-    assert_respond_to(@deck, :deal_one_card)
-    assert_respond_to(@deck, :cards)
-  end
-
   def test_shuffle
     old = @deck.cards
     assert_nil(@deck.shuffle)
