@@ -18,7 +18,8 @@ Within one of your classes, you must provide two operations:
    the caller. Specifically, a call to `shuffle()` followed by 52 calls to
    `dealOneCard()` should result in the caller being provided all 52 cards
    of the deck in a random order. If the caller then makes a 53rd call to
-   `dealOneCard()`, no card is dealt.
+   `dealOneCard()`, no card is dealt. _Ruby doesn't traditionally use
+   camelCase, so I opted to use `deal_one_card()` instead._
 
 ## Poking around
 
