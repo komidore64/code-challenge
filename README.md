@@ -1,5 +1,9 @@
 # Code Challenge
 
+![License](https://img.shields.io/github/license/komidore64/code-challenge)
+![GitHub repo size](https://img.shields.io/github/repo-size/komidore64/code-challenge)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/komidore64/code-challenge/tests)
+
 ## Deck of Cards
 
 Your assignment is to code a set of classes that represent a deck of
@@ -18,22 +22,18 @@ Within one of your classes, you must provide two operations:
    the caller. Specifically, a call to `shuffle()` followed by 52 calls to
    `dealOneCard()` should result in the caller being provided all 52 cards
    of the deck in a random order. If the caller then makes a 53rd call to
-   `dealOneCard()`, no card is dealt. _Ruby doesn't traditionally use
-   camelCase, so I opted to use `deal_one_card()` instead._
+   `dealOneCard()`, no card is dealt.
 
-## Poking around
+_Ruby doesn't traditionally use camelCase, so I opted to use
+`deal_one_card()` instead._
 
-This repo assumes [RVM](https://rvm.io) is present, but isn't strictly
-necessary.
+## Check it out!
+
+This solution assumes [RVM](https://rvm.io) is present.
 
 ```sh
-rvm install 2.7
-# stuff happens
-
-cd .
-# this _should_ initialize the RVM gemset (based on the contents of
-# .ruby-version and .ruby-gemset)
-
+git clone https://github.com/komidore64/code-challenge.git
+cd code-challenge
 bundle install
 ```
 
@@ -41,6 +41,6 @@ Run `rake test` for unit tests.
 
 Run `rake lint` to check code styling.
 
-Run `./repl` to launch a [Pry](https://github.com/pry/pry) session with **Code
-Challenge** already loaded to directly interact with the classes/objects via
-Ruby.
+Run `./repl` to launch a [Pry](https://github.com/pry/pry) session with
+this solution already loaded to directly interact with the classes/objects
+via Ruby.
