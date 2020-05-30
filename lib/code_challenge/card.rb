@@ -28,7 +28,6 @@ class Card
 
   FACES = %i[
     ace
-    one
     two
     three
     four
